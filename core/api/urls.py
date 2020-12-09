@@ -1,15 +1,10 @@
-from django.urls import re_path
-from rest_framework.routers import SimpleRouter
+from django.urls import path
 
 from . import views
 
-router = SimpleRouter()
-router.register(r'beats', views.BeatsViewSet)
-router.register(r'beats/daily', views.ListDailyBeatsViewSet)
-
 urlpatterns = [
-    re_path(
-        r'^company/(?P<company_id>[0-9])/events/$',
-        views.ListCompanyEventsView.as_view(),
-    ),
-] + router.urls
+    path("beats/", views.BeatsView.as_view()),
+    path("beats/by_period/", views.ListPeriodBeatsView.as_view()),
+    path("/company/faults/", views.ListCompanyFaults.as_view()),
+    path("/employees/<int:emp_id>/faults/", views.ListEmployeeFaults.as_view()),
+]

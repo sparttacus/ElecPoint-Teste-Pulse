@@ -39,7 +39,7 @@ class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True, blank=True)
     name = models.CharField(max_length=150)
     surname = models.CharField(max_length=150)
-    docid = models.CharField(max_length=11)
+    docid = models.CharField(max_length=11, unique=True)
     email = models.EmailField(max_length=150, unique=True)
     photo_url = models.CharField(max_length=150)
 
@@ -55,6 +55,9 @@ class CustomUser(AbstractBaseUser):
 
     def clean(self):
         super().clean()
+        self.docid = self.docid.replace('-', '')
+        self.docid = self.docid.replace('.', '')
+        self.docid = self.docid.strip()
         self.email = self.__class__.objects.normalize_email(self.email)
 
 

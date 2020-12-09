@@ -3,7 +3,7 @@
 
 ## Linguagem, Frameworks e Bibliotecas usados(as)
 * Python
-* SQLite3 [db.sqlite3]
+* PostgreSQL
 * Django
 * Django REST Framework (API)
 

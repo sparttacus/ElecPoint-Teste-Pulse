@@ -17,7 +17,6 @@ class SignUpEmployeeViewSet(APIView):
                 serializer.init_data['username'],
                 serializer.init_data['password']
             )
-
             return Response(serializer.data, status=201)
         else:
             return Response(serializer._errors, status=400)
